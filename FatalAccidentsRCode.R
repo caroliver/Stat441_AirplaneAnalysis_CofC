@@ -1,6 +1,8 @@
 #Load the dataset from CSV File
 # NOTE: Make sure to replace the path variable with your own path to the file
+library(readr)
 airline_safety<-read.csv("C:/Users/Vlad/Desktop/Statistics Classes/Math 541/airline-safety.csv",header=T)
+View(airline_safety)
 
 #Get the Number of ASK Based On Trillions
 airline_safety$ASKperTrillion = airline_safety[, "avail_seat_km_per_week"]*52*15/1000000000000
