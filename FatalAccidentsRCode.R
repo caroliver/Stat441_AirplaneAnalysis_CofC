@@ -15,6 +15,7 @@ View(airline_safety)
 # add columns to dataset for 85 to 99 (per trillion and per billion)
 airline_safety$Fatal_Accidents_85_99_trillion = airline_safety$fatal_accidents_85_99 / airline_safety$ASKperTrillion
 airline_safety$Fatal_Accidents_85_99_billion = airline_safety$fatal_accidents_85_99 / airline_safety$ASKperBillion
+View(airline_safety)
 
 # add columns to dataset for 00 to 14 (per trillion and per billion)
 airline_safety$Fatal_Accidents_00_14_trillion = airline_safety$fatal_accidents_00_14 / airline_safety$ASKperTrillion
