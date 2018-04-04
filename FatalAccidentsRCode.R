@@ -48,4 +48,4 @@ cor(fatal_acc_bil_00_14, fatal_acc_bil_85_99)
 
 # The same steps were followed to attain per billion numbers
 
-Both scatterplots and correlation coefficients show no correlation between the two year groups.
+#Both scatterplots and correlation coefficients show no correlation between the two year groups.
