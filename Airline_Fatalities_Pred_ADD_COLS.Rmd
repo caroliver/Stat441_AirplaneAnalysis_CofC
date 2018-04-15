@@ -1,0 +1,131 @@
+---
+title: "Predicting 2000-2014 Fatalities using 1985-1999 data PLUS ADDED COLUMNS""
+output:
+  pdf_document: default
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Load in the dataset from csv file
+```{r}
+library(tree)
+library(e1071)
+library(readr)
+
+# NOTE: Make sure to replace the path variable with your own path to the file
+airline_safety_new <- read_csv("/Users/carolineoliver/airline-safety-new.csv")
+# REPLACE LINE ABOVE WITH YOUR PATH: airline_safety <- read_csv("path_to_csv_file_here")
+```
+
+#### Convert fatality numbers to 1 or 0
+```{r}
+i = 0
+# Y_N stands for Yes_No
+# Yes there were fatalities = 1
+# No there were no fatalities = 0
+fatalitiesY_N_00_14 = vector()
+
+for (i in seq(nrow(airline_safety_new))){
+  if(airline_safety_new$fatalities_00_14[i] == 0){
+    fatalitiesY_N_00_14[i] = 0
+  }
+  else{
+    fatalitiesY_N_00_14[i] = 1
+  }
+}
+```
+
+#### Create new data frame for prediction
+```{r}
+fatal_pred_df = airline_safety_new[ ,2:6]
+fatal_pred_df = cbind(fatal_pred_df, airline_safety_new[ ,10:13])
+View(fatal_pred_df)
+
+fatal_pred_df$fatalitiesY_N_00_14 = fatalitiesY_N_00_14
+colnames(fatal_pred_df)[5] = "fatalitiesY_N_00_14"
+```
+
+### Predict all airlines to have fatalities - Error Rate
+```{r}
+table(fatalitiesY_N_00_14)
+
+32 / 55
+```
+
+### Predict all airlines to NOT have fatalities - Error Rate
+```{r}
+table(fatalitiesY_N_00_14)
+
+23 / 55
+```
+
+### GLM Model
+```{r}
+glm_model = glm(fatalitiesY_N_00_14 ~ ., data=fatal_pred_df)
+summary(glm_model)
+
+glm.pred<-predict(glm_model,fatal_pred_df)
+glm.pred
+average_pred_value = sum(glm.pred)/56
+
+# get 1 or 0 value for prediction
+i = 0
+predY_N = vector()
+
+for (i in seq(nrow(airline_safety_new))){
+  if(glm.pred[i] > average_pred_value){
+    predY_N[i] = 1
+  }
+  else{
+    predY_N[i] = 0
+  }
+}
+```
+
+#### GLM Confusion matrix
+```{r}
+table(predict=predY_N,truth=fatalitiesY_N)
+```
+
+#### GLM Error rate
+```{r}
+(8 + 6) / (26 + 16)
+```
+
+### Tree Classification Model
+```{r fig2, fig.height = 8, fig.width = 10, fig.align = "center"}
+fatal.tree<-tree(fatalitiesY_N_00_14 ~ ., data=fatal_pred_df)
+summary(fatal.tree)
+
+plot(fatal.tree)
+text(fatal.tree,pretty=0)
+
+fatal_tree.pred<-predict(fatal.tree)
+fatal_tree.pred
+
+i = 0
+tree_predY_N = vector()
+
+for (i in seq(nrow(airline_safety_new))){
+  if(fatal_tree.pred[i] > 0.5){
+    tree_predY_N[i] = 1
+  }
+  else{
+    tree_predY_N[i] = 0
+  }
+}
+```
+
+#### Tree Confusion Matrix
+```{r}
+table(tree_predY_N,fatalitiesY_N_00_14)
+```
+
+#### Tree Error Rate
+```{r}
+(20 + 5) / (12 + 18)
+```
