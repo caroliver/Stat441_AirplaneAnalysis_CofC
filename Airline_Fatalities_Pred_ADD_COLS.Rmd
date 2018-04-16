@@ -138,7 +138,7 @@ rf.fatalities<-randomForest(fatalitiesY_N_00_14~.,data=fatal_pred_df,mtry=8,impo
 rf.fatalities.pred<-predict(rf.fatalities,fatal_pred_df)
 ```
 
-### Random Forest Confusion Matrix
+#### Random Forest Confusion Matrix
 ```{r}
 table(rf.fatalities.pred,fatal_pred_df$fatalitiesY_N_00_14)
 ```
