@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Load in the dataset from csv file
 ```{r}
+library(randomForest)
 library(tree)
 library(e1071)
 library(readr)
