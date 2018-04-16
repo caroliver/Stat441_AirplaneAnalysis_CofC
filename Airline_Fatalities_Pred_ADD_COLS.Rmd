@@ -18,8 +18,8 @@ library(e1071)
 library(readr)
 
 # NOTE: Make sure to replace the path variable with your own path to the file
-airline_safety_new <- read_csv("/Users/carolineoliver/airline-safety-new.csv")
-# REPLACE LINE ABOVE WITH YOUR PATH: airline_safety <- read_csv("path_to_csv_file_here")
+airline_safety_new <- read.csv("/Users/carolineoliver/airline-safety-new.csv")
+# REPLACE LINE ABOVE WITH YOUR PATH: airline_safety <- read.csv("path_to_csv_file_here")
 ```
 
 #### Convert fatality numbers to 1 or 0
