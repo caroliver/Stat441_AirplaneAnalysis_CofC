@@ -94,7 +94,7 @@ table(predict=predY_N,truth=fatalitiesY_N_00_14)
 
 #### GLM Error rate
 ```{r}
-(22 + 11) / (10 + 12)
+(7 + 8) / (7 + 8 + 16 + 24)
 ```
 
 ### Tree Classification Model
