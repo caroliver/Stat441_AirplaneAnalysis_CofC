@@ -128,7 +128,7 @@ table(tree_predY_N,fatalitiesY_N_00_14)
 
 #### Tree Error Rate
 ```{r}
-(20 + 5) / (12 + 18)
+(4 + 4) / (4 + 4 + 28 + 19)
 ```
 
 ### Random Forest
