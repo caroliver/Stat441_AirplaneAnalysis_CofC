@@ -48,7 +48,6 @@ View(incident_pred_df)
 
 incident_pred_df$incidentsY_N_00_14 = incidentsY_N_00_14
 colnames(incident_pred_df)[9] = "incidentsY_N_00_14"
-View(incident_pred_df)
 ```
 
 ### Predict all airlines to have incidents - Error Rate
