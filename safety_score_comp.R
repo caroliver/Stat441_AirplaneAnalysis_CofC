@@ -1,3 +1,11 @@
+# This code uses the original airline_safety dataframe
+# there is no reason to switch over and use the new dataframe
+
+library(readr)
+airline_safety <- read_csv("/Users/carolineoliver/airline-safety.csv")
+# REPLACE LINE ABOVE WITH YOUR PATH: airline_safety <- read_csv("path_to_csv_file_here")
+
+# Create dataframe of the study data
 study_combined = list(0.9,0.88,0.88,0.88,0.73,0.71,0.67,0.61,0.6,0.59,0.57,0.51,0.45,0.44,0.37,0.35,0.33,0.33,0.31,0.24,0.23,0.22,0.22,0.2,0.19,0.19,0.16,0.14,0.14,0.11,0.08,0.05,0.01,0.01,-0.01,-0.01,-0.12,-0.13,-0.13,-0.15,-0.17,-0.23,-0.26,-0.35,-0.40,-0.42,-0.48,-0.63,-0.71,-0.74,-0.75,-0.81,-1.38,-1.49,-1.69,-2.26)
 study_combined <- as.numeric(unlist(study_combined))
 study_combined
@@ -17,6 +25,7 @@ study_safety_scores$study_combined_order = seq(1:56)
 
 View(study_safety_scores)
 
+# Create dataframe with the team calculated scores
 calc_safety_score = airline_safety[ , 1]
 calc_safety_score$Safety_scores_85_99 = airline_safety$SafetyScore_85_99
 
@@ -30,6 +39,7 @@ calc_safety_score$team_combined_order = seq(1:56)
 
 View(calc_safety_score)
 
+# Combine the two dataframes created above by airline name
 All_safety_scores = merge(calc_safety_score, study_safety_scores, by = "airline")
 View(All_safety_scores)
 
