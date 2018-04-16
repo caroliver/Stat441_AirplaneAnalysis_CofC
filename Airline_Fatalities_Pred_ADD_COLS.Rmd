@@ -71,7 +71,7 @@ summary(glm_model)
 
 glm.pred<-predict(glm_model,fatal_pred_df)
 glm.pred
-average_pred_value = sum(glm.pred)/56
+average_pred_value = sum(glm.pred)/55
 
 # get 1 or 0 value for prediction
 i = 0
@@ -94,7 +94,7 @@ table(predict=predY_N,truth=fatalitiesY_N_00_14)
 
 #### GLM Error rate
 ```{r}
-(7 + 8) / (7 + 8 + 16 + 24)
+(7 + 6) / (7 + 6 + 16 + 26)
 ```
 
 ### Tree Classification Model
