@@ -133,7 +133,7 @@ table(tree_predY_N,fatalitiesY_N_00_14)
 
 ### Random Forest
 ```{r}
-fatal_pred_df$ fatalitiesY_N_00_14<-as.factor(fatal_pred_df$ fatalitiesY_N_00_14)
+fatal_pred_df$fatalitiesY_N_00_14<-as.factor(fatal_pred_df$fatalitiesY_N_00_14)
 rf.fatalities<-randomForest(fatalitiesY_N_00_14~.,data=fatal_pred_df,mtry=8,importance=T)
 rf.fatalities.pred<-predict(rf.fatalities,fatal_pred_df)
 ```
